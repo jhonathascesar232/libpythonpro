@@ -1,0 +1,4 @@
+filelock==3.0.12
+flake8==3.8.4
+pyflakes==2.2.0
+-r requirements.txt
