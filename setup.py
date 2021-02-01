@@ -6,6 +6,12 @@ from distutils.util import convert_path
 from fnmatch import fnmatchcase
 from setuptools import setup, find_packages
 
+# read the contents of your README file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 
 def read(fname):
     return codecs.open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -96,7 +102,8 @@ def find_package_data(
     return out
 
 
-PACKAGE = "libpythonpro" #    nome do pacote para upload no pypi
+PACKAGE = "libpythonprooo" #    nome do pacote para upload no pypi
+#   nome no pypi
 NAME = PACKAGE
 DESCRIPTION = "Módulo para exemplificar construção de projetos Python"
 AUTHOR = "Jhonathas César"
@@ -110,8 +117,9 @@ setup(
     version=VERSION,
     description=DESCRIPTION,
     # read() ler arquivos do diretório
-    long_description=read('README.md'),
-    long_description_content_type='text/markdown',
+    # long_description=long_description,
+    long_description=open('README.md').read(),
+    long_description_content_type="text/markdown",
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     license=read('LICENSE'),
@@ -124,6 +132,7 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
         "Operating System :: OS Independent",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 3.9",
         "Framework :: Pytest",
     ],
