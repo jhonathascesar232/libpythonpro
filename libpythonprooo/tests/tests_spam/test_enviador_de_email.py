@@ -1,5 +1,5 @@
 # para testes com venv tem que importar o caminho completo
-from libpythonprooo.spam.enviador_de_email import Enviador
+from libpythonprooo.spam.enviador_de_email import Enviador, EmailInvalido
 import pytest
 
 def test_criar_enviador_de_email():
@@ -35,3 +35,21 @@ def test_rementente_com_parametrize(remetente):                         # VARIAV
         'Mensagem',                         #   Mensagem
     )
     assert remetente in resposta
+
+# TESTES DE EXCESSÕES/EMAIL INVÁLIDO
+@pytest.mark.parametrize(
+    'remetente',
+    ['', 'bolgmail.com']
+)
+def test_rementente_com_parametrize_email_invalido(remetente):  # VARIAVEL RECEBIDA DO DECORATOR
+    enviador = Enviador()
+    # GERENCIADOR DE CONTEXTO
+    # PARAMETRO É A EXCESSÃO ESPERADA
+    with pytest.raises(EmailInvalido):
+        resposta = enviador.enviar(
+            remetente,                          #   de
+            'silva@gmail.com',                  #   para
+            'Assunto',                          #   Assunto
+            'Mensagem',                         #   Mensagem
+        )
+        # assert remetente in resposta
