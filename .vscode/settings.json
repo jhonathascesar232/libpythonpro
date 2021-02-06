@@ -1,9 +1,0 @@
-{
-    "python.pythonPath": "c:\\Users\\shrks\\Documents\\PROJETOS_PY\\PythonPRO\\libpython\\.venv\\Scripts\\python.exe",
-    "python.testing.pytestArgs": [
-        "libpythonprooo"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.pytestEnabled": true
-}
