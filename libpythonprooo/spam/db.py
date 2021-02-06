@@ -7,15 +7,16 @@ class Sessao:
         usuario.id = Sessao.contador
         self.usuarios.append(usuario)
 
-    # Iniciando com isolamento de testes
-    def roll_back(self):
-        pass
-
     def fechar(self):
         pass
 
+    # Iniciando com isolamento de testes
+    def roll_back(self):
+        # emulando a limpeza no banco de dados
+        self.usuarios.clear()  # list.clear() -> limpa a lista
+
     def listar(self):
-        return Sessao.usuarios
+        return self.usuarios
 
 
 class Conexao:
