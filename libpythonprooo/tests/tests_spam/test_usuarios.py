@@ -1,6 +1,7 @@
 from libpythonprooo.spam.db import Conexao
 from libpythonprooo.spam.modelos import Usuario
 
+# Iniciando com a funcionalidade do pytest: a fixture
 
 def test_salvar_usuario():
     """
