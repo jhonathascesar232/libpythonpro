@@ -7,6 +7,7 @@ class Sessao:
         usuario.id = Sessao.contador
         self.usuarios.append(usuario)
 
+    # Iniciando com isolamento de testes
     def roll_back(self):
         pass
 
