@@ -6,7 +6,9 @@ from libpythonprooo.spam.modelos import Usuario
 
 # Iniciando com a funcionalidade do pytest: a fixture
 # Etapas de Setup e Tear Down isoladas na fixture
-@pytest.fixture  # A fixture é executada no escopo de função(executa a função)
+# Escopo de modulo > é executada apenas uma vez(toda a função)
+# A execução da conexão foi apenas uma vez quando o modulo foi criado(Tempo contado apenas uma vez)
+@pytest.fixture(scope='module')  # A fixture é executada no escopo de função(executa a função a cada teste)
 def conexao():  # A fixture executa a função e retorna um objeto
     # Setup
     conexao_obj = Conexao()
