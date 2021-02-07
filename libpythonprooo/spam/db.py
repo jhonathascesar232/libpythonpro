@@ -13,7 +13,7 @@ class Sessao:
     # Iniciando com isolamento de testes
     def roll_back(self):
         # emulando a limpeza no banco de dados
-        self.usuarios.clear()  # list.clear() -> limpa a lista
+        self.usuarios.clear()  # list.clear() limpa a lista
 
     def listar(self):
         return self.usuarios
