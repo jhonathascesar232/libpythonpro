@@ -6,6 +6,20 @@ from libpythonprooo.spam.main import EnviadorDeSpam
 from libpythonprooo.spam.modelos import Usuario
 
 
+#
+# Injeção de dependencias
+#
+class EnviadorMock(Enviador):
+    def __init__(self):
+        super().__init__()
+        self.qtd_email_enviados = 0
+        self.parametros_de_envio = None
+
+    def enviar(self, remetente, destinatario, assunto, corpo):
+        self.parametros_de_envio = (remetente, destinatario, assunto, corpo)
+        self.qtd_email_enviados += 1
+
+
 @pytest.mark.parametrize(
     'usuarios',
     [  # list[0]
@@ -23,7 +37,7 @@ def test_qtd_de_spam(sessao, usuarios):
     for usuario in usuarios:
         sessao.salvar(usuario)
 
-    enviador = Enviador()
+    enviador = EnviadorMock()
 
     enviador_de_spam = EnviadorDeSpam(sessao, enviador)
     enviador_de_spam.enviar_emails(
@@ -33,15 +47,13 @@ def test_qtd_de_spam(sessao, usuarios):
     )
     # certificar a quantidade de emails
     assert len(usuarios) == enviador.qtd_email_enviados
-#
-# Injeção de dependencias
-#
-def test_parametros_de_spam(sessao, usuarios):
+
+
+def test_parametros_de_spam(sessao):
+    usuario = Usuario(nome='César', email='jhonathas@gmail.com')
     # Salvar os usuarios
-    for usuario in usuarios:
-        sessao.salvar(usuario)
-
-    enviador = Enviador()
+    sessao.salvar(usuario)
+    enviador = EnviadorMock()
 
     enviador_de_spam = EnviadorDeSpam(sessao, enviador)
     enviador_de_spam.enviar_emails(
@@ -50,4 +62,9 @@ def test_parametros_de_spam(sessao, usuarios):
         corpo='Confira os modulos Fantasticos'
     )
     # certificar a quantidade de emails
-    assert len(usuarios) == enviador.qtd_email_enviados
+    assert enviador.parametros_de_envio == (
+        'renzo@python.pro.br',
+        'jhonathas@gmail.com',
+        'Curso Python Pro',
+        'Confira os modulos Fantasticos'
+    )
