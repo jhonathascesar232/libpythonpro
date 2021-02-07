@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class Sessao:
     contador = 0
     usuarios = []
@@ -20,6 +23,12 @@ class Sessao:
 
 
 class Conexao:
+    """
+    Conexao com o banco de dados
+    """
+    def __init__(self):
+        # Emulando a demora com a conexão do com o banco de dados
+        sleep(10)
 
     def gerar_sessao(self):
         return Sessao()

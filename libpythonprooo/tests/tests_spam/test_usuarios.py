@@ -6,7 +6,7 @@ from libpythonprooo.spam.modelos import Usuario
 
 # Iniciando com a funcionalidade do pytest: a fixture
 # Etapas de Setup e Tear Down isoladas na fixture
-@pytest.fixture
+@pytest.fixture  # A fixture é executada no escopo de função(executa a função)
 def conexao():  # A fixture executa a função e retorna um objeto
     # Setup
     conexao_obj = Conexao()
@@ -36,7 +36,6 @@ def test_salvar_usuario(sessao):  # a fixture executa o metodo e recebe o retorn
     sessao.salvar(usuario)  # 3 Salva o usuário no banco
     # para certificar que o usuário foi salvo-> conferir o id
     assert isinstance(usuario.id, int)
-
 
 
 def test_listar_usuarios(sessao):
