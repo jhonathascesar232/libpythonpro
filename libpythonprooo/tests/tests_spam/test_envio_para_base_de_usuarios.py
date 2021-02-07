@@ -33,3 +33,21 @@ def test_qtd_de_spam(sessao, usuarios):
     )
     # certificar a quantidade de emails
     assert len(usuarios) == enviador.qtd_email_enviados
+#
+# Injeção de dependencias
+#
+def test_parametros_de_spam(sessao, usuarios):
+    # Salvar os usuarios
+    for usuario in usuarios:
+        sessao.salvar(usuario)
+
+    enviador = Enviador()
+
+    enviador_de_spam = EnviadorDeSpam(sessao, enviador)
+    enviador_de_spam.enviar_emails(
+        remetente='renzo@python.pro.br',
+        assunto='Curso Python Pro',
+        corpo='Confira os modulos Fantasticos'
+    )
+    # certificar a quantidade de emails
+    assert len(usuarios) == enviador.qtd_email_enviados
