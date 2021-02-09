@@ -19,5 +19,5 @@ pytest-cov==2.11.1
 coverage==5.4
 pytest-mock==3.5.1
 
-
 -r requirements.txt
+# instalacao do pipenv
