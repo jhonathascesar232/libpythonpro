@@ -1,2 +1,6 @@
 def test_int():
-    assert 1==1
+    """
+    Test_int: ok
+    :return:
+    """
+    assert 1 == 1
