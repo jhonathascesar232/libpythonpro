@@ -4,3 +4,7 @@
 schedule: ''
 update: all
 search: True
+
+requirements:
+  - Pipfile
+  - Pipfile.lock
